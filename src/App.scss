@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300&family=Monoton&display=swap');
+
+@mixin reset-spacing {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin flex($direction) {
+  display: flex;
+  flex-direction: $direction;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cairo';
+}
+
+img {
+  max-width: 100%;
+}
+
+ul,
+li {
+  @include reset-spacing;
+}
+
+li,
+a {
+  list-style: none;
+  text-decoration: none;
+}
+
+/* **               ** */
+/* ** MEDIA QUERIES ** */
+/* **               ** */
+
+/* Medium screens - TABLET */
+@media only screen and (min-width: 641px) {
+  /* Large screens - DESKTOP */
+  @media only screen and (min-width: 1025px) {
+  }
+
+  /* XLarge screens */
+  @media only screen and (min-width: 1441px) {
+  }
+
+  /* XXLarge screens */
+  @media only screen and (min-width: 1921px) {
+  }
+}
+
+/* Large screens - use when QAing large screen-only issues */
+@media only screen and (min-width: 1024px) and (max-width: 1440px) {
+}
+
+@media only screen and (min-width: 1441px) and (max-width: 1920px) {
+} /* XLarge screens - use when QAing xlarge screen-only issues */
