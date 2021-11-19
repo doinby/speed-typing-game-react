@@ -1,7 +1,18 @@
 /* eslint-disable no-unused-vars */
 import React, {useState, useEffect} from 'react';
 import {TextareaAutosize} from '@mui/base';
-import {Button} from '@mui/material';
+import {
+  Button,
+  Divider,
+  List,
+  ListItem,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+} from '@mui/material';
+import Paper from '@mui/material/Paper';
 
 import './App.css';
 
@@ -43,7 +54,14 @@ export default function App() {
     if (isGameOver === false) {
       if (countdown > 0) {
         setTimeout(() => {
-          setCountdown((time) => time - 1);
+          setCountdown((time) => {
+            const $countdown = document.querySelector('#countdown');
+            if (Number($countdown.value) < 15) {
+              $countdown.style.color = 'red';
+            }
+            // $countdown.css
+            return time - 1;
+          });
         }, 1000);
 
         // Disable button
@@ -76,15 +94,46 @@ export default function App() {
         disabled={isGameOver === false ? false : true}
       />
 
-      <Button variant='contained' onClick={setGameState} disabled={isDisabled}>
+      <Button
+        className='start-btn'
+        variant='contained'
+        onClick={setGameState}
+        disabled={isDisabled}
+      >
         {isGameOver === null ? '[ENTER] Start' : '[ENTER] Restart'}
       </Button>
-      <h4 className='time-remaining'>
+
+      <TableContainer component={Paper} sx={{maxWidth: '50%'}}>
+        <Table aria-label='result-table'>
+          <TableBody>
+            <TableRow>
+              <TableCell>Time remaining:</TableCell>
+              <TableCell id='countdown'>{countdown}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Word count:</TableCell>
+              <TableCell>{calculateWordcount()}</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+      {/* <List>
+        <ListItem>
+          Time remaining: <span>{countdown}</span>
+        </ListItem>
+        <Divider />
+        <ListItem>
+          Word count: <span>{calculateWordcount()}</span>
+        </ListItem>
+      </List> */}
+
+      {/* <h4 className='time-remaining'>
         Time remaining: <span>{countdown}</span>
       </h4>
       <h4 className='word-count'>
         Word count: <span>{calculateWordcount()}</span>
-      </h4>
+      </h4> */}
     </>
   );
 }
