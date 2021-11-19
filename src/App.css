@@ -39,6 +39,8 @@ a {
 }
 
 textarea.typing-box {
+  padding: 0.5em;
+  margin-bottom: 2rem;
   width: 100%;
   background: #363646;
   color: white;

@@ -5,11 +5,11 @@ import {Button} from '@mui/material';
 
 import './App.css';
 
-const $typingBox = document.getElementsByClassName('typing-box');
-
 export default function App() {
+  const COUNTDOWN_VALUE = 15;
+
   const [text, setText] = useState('');
-  const [countdown, setCountdown] = useState(5);
+  const [countdown, setCountdown] = useState(COUNTDOWN_VALUE);
 
   // There are 3 game state:
   // 1. Null - game hasn't started
@@ -34,7 +34,7 @@ export default function App() {
     // On game's first start or restarted, clear text and start new countdown
     if (isGameOver === null || isGameOver === true) {
       setText('');
-      setCountdown(5);
+      setCountdown(COUNTDOWN_VALUE);
       setGameOver(false);
     }
   }
@@ -76,15 +76,15 @@ export default function App() {
         disabled={isGameOver === false ? false : true}
       />
 
+      <Button variant='contained' onClick={setGameState} disabled={isDisabled}>
+        {isGameOver === null ? '[ENTER] Start' : '[ENTER] Restart'}
+      </Button>
       <h4 className='time-remaining'>
         Time remaining: <span>{countdown}</span>
       </h4>
       <h4 className='word-count'>
         Word count: <span>{calculateWordcount()}</span>
       </h4>
-      <Button variant='contained' onClick={setGameState} disabled={isDisabled}>
-        {isGameOver === null ? '[ENTER] Start' : '[ENTER] Restart'}
-      </Button>
     </>
   );
 }
