@@ -1,22 +1,90 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, {useState, useEffect} from 'react';
 import {TextareaAutosize} from '@mui/base';
 import {Button} from '@mui/material';
 
 import './App.css';
 
+const $typingBox = document.getElementsByClassName('typing-box');
+
 export default function App() {
+  const [text, setText] = useState('');
+  const [countdown, setCountdown] = useState(5);
+
+  // There are 3 game state:
+  // 1. Null - game hasn't started
+  // 2. False - game is running and countdown > 0
+  // 3. True - game finishes and coundown = 0
+  const [isGameOver, setGameOver] = useState(null);
+  const [isDisabled, setDisabled] = useState(false);
+
+  function handleTyping(event) {
+    const {value} = event.target;
+    setText(value);
+  }
+
+  function calculateWordcount() {
+    if (text !== '') {
+      // Use trim() to get rid of space before and after text string
+      return text.trim().split(' ').length;
+    } else return 0; // If text string is empty, return 0;
+  }
+
+  function setGameState() {
+    // On game's first start or restarted, clear text and start new countdown
+    if (isGameOver === null || isGameOver === true) {
+      setText('');
+      setCountdown(5);
+      setGameOver(false);
+    }
+  }
+
+  useEffect(() => {
+    if (isGameOver === false) {
+      if (countdown > 0) {
+        setTimeout(() => {
+          setCountdown((time) => time - 1);
+        }, 1000);
+
+        // Disable button
+        setDisabled(true);
+      } else {
+        setDisabled(false);
+        setGameOver(true);
+      }
+    }
+  }, [countdown, isGameOver]);
+
   return (
     <>
       <h1>How fast do you type?</h1>
       <TextareaAutosize
-        aria-label='texarea'
+        className='typing-box'
+        onChange={handleTyping}
+        value={text}
+        aria-label='typing-box'
+        minRows={10}
         maxRows={10}
-        placeholder='    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        placeholder={
+          // If game hasn't started, show instruction
+          isGameOver === null
+            ? `Instruction: Press 'START' button to start the game. Type as fast as you can before the coundown ends`
+            : 'Start typing here...'
+        }
+        // If game hasn't started (value: null) or has ended (value: true),
+        // disable textarea
+        disabled={isGameOver === false ? false : true}
       />
 
-      <h4>Time remaining: ???</h4>
-      <Button variant='contained'>start</Button>
-      <h4>Word count: ???</h4>
+      <h4 className='time-remaining'>
+        Time remaining: <span>{countdown}</span>
+      </h4>
+      <h4 className='word-count'>
+        Word count: <span>{calculateWordcount()}</span>
+      </h4>
+      <Button variant='contained' onClick={setGameState} disabled={isDisabled}>
+        {isGameOver === null ? '[ENTER] Start' : '[ENTER] Restart'}
+      </Button>
     </>
   );
 }
