@@ -47,12 +47,8 @@ textarea.typing-box {
   font-size: 1rem;
 }
 
-.time-remaining {
-  margin-bottom: 0.25em;
-}
-
-.word-count {
-  margin-top: 0;
+button.start-btn {
+  margin-bottom: 2rem;
 }
 
 /* **               ** */

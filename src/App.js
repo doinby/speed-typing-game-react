@@ -1,8 +1,15 @@
 /* eslint-disable no-unused-vars */
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {TextareaAutosize} from '@mui/base';
-import {Button} from '@mui/material';
-
+import {
+  Button,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+} from '@mui/material';
+import Paper from '@mui/material/Paper';
 import './App.css';
 
 export default function App() {
@@ -43,7 +50,13 @@ export default function App() {
     if (isGameOver === false) {
       if (countdown > 0) {
         setTimeout(() => {
-          setCountdown((time) => time - 1);
+          setCountdown((time) => {
+            const $countdown = document.querySelector('#countdown');
+            if (Number($countdown.value) < 15) {
+              $countdown.style.color = 'red';
+            }
+            return time - 1;
+          });
         }, 1000);
 
         // Disable button
@@ -71,20 +84,33 @@ export default function App() {
             ? `Instruction: Press 'START' button to start the game. Type as fast as you can before the coundown ends`
             : 'Start typing here...'
         }
-        // If game hasn't started (value: null) or has ended (value: true),
-        // disable textarea
+        // If game hasn't started or has ended, disable textarea
         disabled={isGameOver === false ? false : true}
       />
 
-      <Button variant='contained' onClick={setGameState} disabled={isDisabled}>
+      <Button
+        className='start-btn'
+        variant='contained'
+        onClick={setGameState}
+        disabled={isDisabled}
+      >
         {isGameOver === null ? '[ENTER] Start' : '[ENTER] Restart'}
       </Button>
-      <h4 className='time-remaining'>
-        Time remaining: <span>{countdown}</span>
-      </h4>
-      <h4 className='word-count'>
-        Word count: <span>{calculateWordcount()}</span>
-      </h4>
+
+      <TableContainer component={Paper} sx={{maxWidth: '50%'}}>
+        <Table aria-label='result-table'>
+          <TableBody>
+            <TableRow>
+              <TableCell>Time remaining:</TableCell>
+              <TableCell id='countdown'>{countdown}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Word count:</TableCell>
+              <TableCell>{calculateWordcount()}</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
     </>
   );
 }
