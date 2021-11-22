@@ -19,11 +19,12 @@ export default function App() {
   const [countdown, setCountdown] = useState(COUNTDOWN_VALUE);
 
   // There are 3 game state:
-  // 1. Null - game hasn't started
-  // 2. False - game is running and countdown > 0
-  // 3. True - game finishes and coundown = 0
+  // 1. Null - game hasn't started.
+  // 2. False - game is running and countdown > 0.
+  // 3. True - game finishes and coundown = 0.
   const [isGameOver, setGameOver] = useState(null);
   const [isDisabled, setDisabled] = useState(false);
+  const typingBoxRef = useRef(null);
 
   function handleTyping(event) {
     const {value} = event.target;
@@ -32,17 +33,26 @@ export default function App() {
 
   function calculateWordcount() {
     if (text !== '') {
-      // Use trim() to get rid of space before and after text string
+      // Use trim() to get rid of space before and after text string.
       return text.trim().split(' ').length;
-    } else return 0; // If text string is empty, return 0;
+    } else return 0; // If text string is empty, return 0.
   }
 
   function setGameState() {
-    // On game's first start or restarted, clear text and start new countdown
+    // On the game's first start/restart, clear text and start new countdown.
     if (isGameOver === null || isGameOver === true) {
       setText('');
       setCountdown(COUNTDOWN_VALUE);
       setGameOver(false);
+
+      // Note: React runs setState asynchronously; it doesn't wait for the prev
+      // line of code to finish before running the next one. Prev state setGameOver(false)
+      // supposes to run BEFORE typingBoxRef.current.focus(), but doesn't. Hence
+      // we need to manually enabled typing box so it could be focused.
+
+      // BUG FIX: Manually overwritten so the next line could work.
+      typingBoxRef.current.disabled = false;
+      typingBoxRef.current.focus();
     }
   }
 
@@ -59,7 +69,7 @@ export default function App() {
           });
         }, 1000);
 
-        // Disable button
+        // Disable button.
         setDisabled(true);
       } else {
         setDisabled(false);
@@ -79,22 +89,16 @@ export default function App() {
         minRows={10}
         maxRows={10}
         placeholder={
-          // If game hasn't started, show instruction
+          // If game hasn't started, show instruction.
           isGameOver === null
             ? `Instruction: Press 'START' button to start the game. Type as fast as you can before the coundown ends`
             : 'Start typing here...'
         }
-        // If game hasn't started or has ended, disable textarea
+        // If game hasn't started or has ended, disable textarea.
         disabled={isGameOver === false ? false : true}
-      />
-
-      <Button
-        className='start-btn'
-        variant='contained'
-        onClick={setGameState}
-        disabled={isDisabled}
-      >
-        {isGameOver === null ? '[ENTER] Start' : '[ENTER] Restart'}
+        ref={typingBoxRef}
+lse ? false : true}
+l ? '[ENTER] Start' : '[ENTER] Restart'}
       </Button>
 
       <TableContainer component={Paper} sx={{maxWidth: '50%'}}>
