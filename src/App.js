@@ -1,11 +1,8 @@
 /* eslint-disable no-unused-vars */
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {TextareaAutosize} from '@mui/base';
 import {
   Button,
-  Divider,
-  List,
-  ListItem,
   Table,
   TableBody,
   TableCell,
@@ -13,7 +10,6 @@ import {
   TableRow,
 } from '@mui/material';
 import Paper from '@mui/material/Paper';
-
 import './App.css';
 
 export default function App() {
@@ -59,7 +55,6 @@ export default function App() {
             if (Number($countdown.value) < 15) {
               $countdown.style.color = 'red';
             }
-            // $countdown.css
             return time - 1;
           });
         }, 1000);
@@ -89,8 +84,7 @@ export default function App() {
             ? `Instruction: Press 'START' button to start the game. Type as fast as you can before the coundown ends`
             : 'Start typing here...'
         }
-        // If game hasn't started (value: null) or has ended (value: true),
-        // disable textarea
+        // If game hasn't started or has ended, disable textarea
         disabled={isGameOver === false ? false : true}
       />
 
@@ -117,23 +111,6 @@ export default function App() {
           </TableBody>
         </Table>
       </TableContainer>
-
-      {/* <List>
-        <ListItem>
-          Time remaining: <span>{countdown}</span>
-        </ListItem>
-        <Divider />
-        <ListItem>
-          Word count: <span>{calculateWordcount()}</span>
-        </ListItem>
-      </List> */}
-
-      {/* <h4 className='time-remaining'>
-        Time remaining: <span>{countdown}</span>
-      </h4>
-      <h4 className='word-count'>
-        Word count: <span>{calculateWordcount()}</span>
-      </h4> */}
     </>
   );
 }
