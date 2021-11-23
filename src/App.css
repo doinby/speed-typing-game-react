@@ -1,14 +1,22 @@
-@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400&family=Monoton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bungee&display=swap");
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
 
 body {
+  margin: 0 auto;
+  padding: 1rem;
+  max-width: 760px;
   background: #262738;
   color: white;
-  font-family: "Cairo";
+  font-family: "Bungee", san-serif;
+  letter-spacing: 0.35em;
   font-size: 20px;
+}
+
+h1 {
+  text-align: center;
 }
 
 img {
@@ -49,6 +57,13 @@ textarea.typing-box {
 
 button.start-btn {
   margin-bottom: 2rem;
+}
+
+.css-qwyb7t-MuiButtonBase-root-MuiButton-root,
+.css-1u2bgsk-MuiTableCell-root {
+  font-family: "Bungee", san-serif !important;
+  font-size: 16px !important;
+  letter-spacing: 0.2em !important;
 }
 
 /* **               ** */

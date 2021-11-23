@@ -97,8 +97,15 @@ export default function App() {
         // If game hasn't started or has ended, disable textarea.
         disabled={isGameOver === false ? false : true}
         ref={typingBoxRef}
-lse ? false : true}
-l ? '[ENTER] Start' : '[ENTER] Restart'}
+      />
+
+      <Button
+        className='start-btn'
+        variant='contained'
+        onClick={setGameState}
+        disabled={isDisabled}
+      >
+        {isGameOver === null ? 'Start' : 'Try again!'}
       </Button>
 
       <TableContainer component={Paper} sx={{maxWidth: '50%'}}>

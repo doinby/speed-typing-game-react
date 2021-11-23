@@ -23,19 +23,19 @@ export const theme = createTheme({
     },
     divider: 'rgba(124,77,255,0.65)',
   },
-  typography: {
-    fontFamily: 'Cairo',
-    body1: {
-      fontFamily: 'Cairo',
-    },
-    h1: {
-      fontFamily: 'Monoton',
-    },
-    h2: {
-      fontFamily: 'Monoton',
-    },
-    h3: {
-      fontFamily: 'Monoton',
-    },
-  },
+  // typography: {
+  //   fontFamily: 'Cairo',
+  //   body1: {
+  //     fontFamily: 'Cairo',
+  //   },
+  //   h1: {
+  //     fontFamily: 'Monoton',
+  //   },
+  //   h2: {
+  //     fontFamily: 'Monoton',
+  //   },
+  //   h3: {
+  //     fontFamily: 'Monoton',
+  //   },
+  // },
 });

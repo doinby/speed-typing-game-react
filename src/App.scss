@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400&family=Monoton&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400&family=Monoton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Monofett&display=swap');
 
 @mixin reset-spacing {
   margin: 0;
@@ -10,14 +13,21 @@
   flex-direction: $direction;
 }
 
+$main-font: 'Bungee', san-serif;
+
 * {
   box-sizing: border-box;
 }
 
 body {
+  margin: 0 auto;
+  padding: 1rem;
+  max-width: 760px;
   background: #262738;
   color: white;
-  font-family: 'Cairo';
+  font-family: $main-font;
+  letter-spacing: 0.35em;
+  // font-family: 'Bungee', cursive !important;
   font-size: 20px;
 }
 
@@ -27,6 +37,11 @@ body {
 // h4 {
 //   font-family: 'Monoton';
 // }
+
+h1 {
+  text-align: center;
+  // margin-bottom: 0;
+}
 
 img {
   max-width: 100%;
@@ -61,13 +76,12 @@ button.start-btn {
   margin-bottom: 2rem;
 }
 
-// .time-remaining {
-//   margin-bottom: 0.25em;
-// }
-
-// .word-count {
-//   margin-top: 0;
-// }
+.css-qwyb7t-MuiButtonBase-root-MuiButton-root,
+.css-1u2bgsk-MuiTableCell-root {
+  font-family: $main-font !important;
+  font-size: 16px !important;
+  letter-spacing: 0.2em !important;
+}
 
 /* **               ** */
 /* ** MEDIA QUERIES ** */
