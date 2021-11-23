@@ -108,7 +108,7 @@ export default function App() {
         {isGameOver === null ? 'Start' : 'Try again!'}
       </Button>
 
-      <TableContainer component={Paper} sx={{maxWidth: '50%'}}>
+      <TableContainer component={Paper} className='result-table'>
         <Table aria-label='result-table'>
           <TableBody>
             <TableRow>

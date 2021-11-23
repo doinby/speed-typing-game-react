@@ -1,7 +1,6 @@
-// @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400&family=Monoton&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Monofett&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Geo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
 
 @mixin reset-spacing {
   margin: 0;
@@ -13,7 +12,8 @@
   flex-direction: $direction;
 }
 
-$main-font: 'Bungee', san-serif;
+$main-font: 'Bungee', sans-serif;
+$mono-font: 'Ubuntu Mono', monospace;
 
 * {
   box-sizing: border-box;
@@ -27,20 +27,11 @@ body {
   color: white;
   font-family: $main-font;
   letter-spacing: 0.35em;
-  // font-family: 'Bungee', cursive !important;
   font-size: 20px;
 }
 
-// h1,
-// h2,
-// h3,
-// h4 {
-//   font-family: 'Monoton';
-// }
-
 h1 {
   text-align: center;
-  // margin-bottom: 0;
 }
 
 img {
@@ -69,15 +60,21 @@ textarea.typing-box {
   width: 100%;
   background: #363646;
   color: white;
-  font-size: 1rem;
+  font-family: $mono-font;
+  font-size: 1.25rem;
+  line-height: 1.5em;
 }
 
 button.start-btn {
   margin-bottom: 2rem;
 }
 
-.css-qwyb7t-MuiButtonBase-root-MuiButton-root,
-.css-1u2bgsk-MuiTableCell-root {
+.result-table {
+  max-width: 20rem;
+}
+
+button.start-btn,
+.MuiTableCell-root {
   font-family: $main-font !important;
   font-size: 16px !important;
   letter-spacing: 0.2em !important;

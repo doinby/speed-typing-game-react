@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Bungee&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -10,7 +11,7 @@ body {
   max-width: 760px;
   background: #262738;
   color: white;
-  font-family: "Bungee", san-serif;
+  font-family: "Bungee", sans-serif;
   letter-spacing: 0.35em;
   font-size: 20px;
 }
@@ -52,16 +53,22 @@ textarea.typing-box {
   width: 100%;
   background: #363646;
   color: white;
-  font-size: 1rem;
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1.25rem;
+  line-height: 1.5em;
 }
 
 button.start-btn {
   margin-bottom: 2rem;
 }
 
-.css-qwyb7t-MuiButtonBase-root-MuiButton-root,
-.css-1u2bgsk-MuiTableCell-root {
-  font-family: "Bungee", san-serif !important;
+.result-table {
+  max-width: 20rem;
+}
+
+button.start-btn,
+.MuiTableCell-root {
+  font-family: "Bungee", sans-serif !important;
   font-size: 16px !important;
   letter-spacing: 0.2em !important;
 }

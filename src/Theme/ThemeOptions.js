@@ -21,7 +21,7 @@ export const theme = createTheme({
     success: {
       main: '#00e676',
     },
-    divider: 'rgba(124,77,255,0.65)',
+    // divider: 'rgba(124,77,255,0.65)',
   },
   // typography: {
   //   fontFamily: 'Cairo',
